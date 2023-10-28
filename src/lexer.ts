@@ -13,3 +13,15 @@ interface Token {
     value: string;
     type: TokenType
 }
+
+async function getSourceCode(): Promise<string> {
+    try {
+        const fileData = await Deno.readTextFile('code/source_code.txt');
+        return fileData;
+    } catch (e) {
+        console.log('File Not found or Incorrect path: \n', e);
+    }
+    return '';
+}
+
+const data = await getSourceCode();
